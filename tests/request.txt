@@ -1,0 +1,1 @@
+{ "query": "{  octopuses {    id    name    octopusType {      id      name    }    weight  }}"}

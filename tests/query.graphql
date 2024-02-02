@@ -1,0 +1,20 @@
+{
+  octopus(id: 50011) {
+    id
+    name
+    octopusType {
+      id
+      name
+  }
+    weight
+  }
+  octopuses{
+    id
+    name
+    octopusType {
+      id
+      name
+    }
+    weight
+  }
+}
