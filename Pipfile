@@ -1,0 +1,15 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "==5.0"
+factory-boy = "*"
+graphene-django = {editable = true, ref = "support-async", git = "https://github.com/jaw9c/graphene-django.git"}
+uvicorn = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
