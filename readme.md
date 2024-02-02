@@ -1,7 +1,7 @@
 # TL;DR
 
 
-16.547 seconds vs 83.194 seconds for i/o bound queries. 5x faster.
+16.547s vs 83.194s for i/o bound queries. 5x faster.
 async wins
 
 -----
