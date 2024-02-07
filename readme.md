@@ -2,13 +2,13 @@ Benchmarking for graphql-python/graphene-django#1394
 
 # TL;DR
 
-
 16.547s vs 83.194s for i/o bound queries. 5x faster.
 async wins
 
 -----
 
 ## Methodology
+
 1. project is a simple django project with a single app.
 2. sqlite3 is used as the database, with 3 tables filled in with data (up to a million records)
 3. two endpoints are created, one for sync and one for async.
@@ -28,11 +28,9 @@ async wins
 
 ### AB command
 
-
-
 ```ab -n 1000 -c 10 -p ./request.txt -T application/json http://127.0.0.1:8000/graphql-async/```
 
-or 
+or
 `./run-async.sh.`
 
 ### Results:
@@ -97,7 +95,6 @@ Percentage of the requests served within a certain time (ms)
 ```
 
 -----
-
 
 ## Sync
 
@@ -185,6 +182,7 @@ Time taken for tests:   13.411 seconds
 Complete requests:      1000
 Failed requests:        0
 ```
+
 Mem usage: 80mb, 100threads
 
 Sync:
@@ -200,3 +198,16 @@ Failed requests:        0
 ```
 
 Mem usage: 80mb*9, one thread per process.
+
+-------
+
+## Comparison table
+
+|             | **Sync** | **Async** | | **Sync** | **Async** | |
+|-------------|----------|-----------|-|----------|-----------|-|
+| Requests    | 1000     | 1000      | | 1000     | 1000      | |
+| Concurrency | 100      | 100       | | 100      | 100       | |
+| Processes   | 9        | 1         | | 4        | 1         | |
+| Threads     | 1        | 100       | | 1        | 100       | |
+| Mem         | ~720mb   | ~80mb     | | ~320mb   | ~80mb     | |
+| Time        | 23.384s  | 13.411s   | |24.465s   | 13.670s   | |
