@@ -209,5 +209,5 @@ Mem usage: 80mb*9, one thread per process.
 | Concurrency         | 100      | 100       | | 100      | 100       | | 100      | 100       | |
 | Processes           | 9        | 1         | | 4        | 1         | | 9        | 9         | |
 | Threads per process | 1        | 100       | | 1        | 100       | | 1        | 1-30      | |
-| Mem                 | ~720mb   | ~80mb     | | ~320mb   | ~80mb     | | ~720mb   | ~50mb*9   | |
+| Mem                 | ~720mb   | ~80mb     | | ~320mb   | ~80mb     | | ~720mb   | ~720mb    | |
 | Time                | 23.384s  | 13.411s   | | 24.465s  | 13.670s   | | 23.384s  | 4.719s    | |
