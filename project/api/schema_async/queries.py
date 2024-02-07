@@ -13,7 +13,6 @@ class OctopusNode(DjangoObjectType):
             'age',
             'weight',
             'octopus_type',
-            'sea_food',
             'user'
         ]
 

@@ -12,7 +12,6 @@ class OctopusNode(DjangoObjectType):
             'age',
             'weight',
             'octopus_type',
-            'sea_food',
             'user'
         ]
 
@@ -45,7 +44,17 @@ class OctopusQuery(graphene.ObjectType):
     octopus = graphene.Field(OctopusNode, id=graphene.Int())
 
     def resolve_octopuses(self, info, **kwargs):
-        return Octopus.objects.all()[:500]
+        return (
+            Octopus.objects.
+            select_related('user', 'octopus_type')
+            .prefetch_related('seafood')
+            .all()[:500]
+        )
 
     def resolve_octopus(self, info, id):
-        return Octopus.objects.get(pk=id)
+        return (
+            Octopus.objects.
+            select_related('user', 'octopus_type').
+            prefetch_related('seafood').
+            get(pk=id)
+        )
