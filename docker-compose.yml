@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16.1
+    container_name: graphene-django-benchmark-postgres
+    environment:
+      POSTGRES_DB: benchmark
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d benchmark -U user"]
+      interval: 1s
+      timeout: 1s
+      retries: 10
+
+  population:
+    build:
+      context: .
+      target: sync
+    container_name: graphene-django-benchmark-population
+    command: bash -c "python manage.py migrate && python manage.py generate"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  service-graphene-django-sync:
+    build:
+      context: .
+      target: sync
+    container_name: graphene-django-benchmark-service-graphene-django-sync
+    depends_on:
+      population:
+        condition: service_completed_successfully
+    ports:
+      - "8000:8000"
+
+  service-graphene-django-async:
+    build:
+      context: .
+      target: async
+    container_name: graphene-django-benchmark-service-graphene-django-async
+    depends_on:
+      population:
+        condition: service_completed_successfully
+    ports:
+      - "8001:8000"

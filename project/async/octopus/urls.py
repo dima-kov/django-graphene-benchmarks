@@ -17,13 +17,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
-from graphene_django.views import GraphQLView, AsyncGraphQLView
+from graphene_django.views import GraphQLView
+from graphene_django.views import AsyncGraphQLView
 
-from api.schema import schema
+from api.schema_sync import schema_sync
 from api.schema_async import schema_async
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('graphql/', csrf_exempt(GraphQLView.as_view(schema=schema, graphiql=True))),
-    path('graphql-async/', csrf_exempt(AsyncGraphQLView.as_view(schema=schema_async, graphiql=True))),
+    path("admin/", admin.site.urls),
+    path(
+        "graphql_async/",
+        csrf_exempt(AsyncGraphQLView.as_view(schema=schema_async, graphiql=True)),
+    ),
+    path("graphql_sync/", csrf_exempt(GraphQLView.as_view(schema=schema_sync, graphiql=True))),
+
 ]

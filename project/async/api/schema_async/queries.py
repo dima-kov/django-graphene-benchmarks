@@ -51,7 +51,7 @@ class OctopusQuery(graphene.ObjectType):
             .prefetch_related('seafood')
             .all()
         )
-        async for i in qs[:10]:
+        async for i in qs[:500]:
             yield i
 
     async def resolve_octopus(self, info, id):
