@@ -5,3 +5,5 @@
 *.pyd
 *.swp
 *.log
+
+.env
