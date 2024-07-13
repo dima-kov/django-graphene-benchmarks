@@ -84,6 +84,13 @@ DATABASES = {
         "USER": "user",
         "PASSWORD": "password",
         "PORT": "5432",
+        "OPTIONS": {
+            "pool": {
+                "min_size": 2,
+                "max_size": 10,
+                "timeout": 30,
+            }
+        },
     }
 }
 
@@ -131,5 +138,3 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-GRAPHENE = {"SCHEMA": "api.schema.schema"}
