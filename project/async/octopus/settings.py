@@ -84,6 +84,13 @@ DATABASES = {
         "USER": "user",
         "PASSWORD": "password",
         "PORT": "5432",
+        "OPTIONS": {
+            "pool": {
+                "min_size": 2,
+                "max_size": 10,
+                "timeout": 30,
+            }
+        },
     }
 }
 
